@@ -249,21 +249,22 @@ ORDER BY TotalSpent DESC;
 ```
 ---
 
-Q8: Who are the top-spending customers, ranked by total amount spent?
+Q8: SELECT
 ``` sql
-SELECT
     CustomerName,
     TotalSpent,
     RANK() OVER (ORDER BY TotalSpent DESC) AS CustomerRank
 FROM (
     SELECT
-        CONCAT(c.FirstName,' ', c.LastName) AS CustomerName,
+        CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName,
         SUM(i.Total) AS TotalSpent
     FROM Customer c
-    INNER JOIN Invoice i ON c.CustomerId = i.CustomerId
+    INNER JOIN Invoice i
+        ON c.CustomerId = i.CustomerId
     GROUP BY c.CustomerId, CustomerName
 ) AS CustomerSpending;
--- Result: Helena Holý (49.62, rank 1), Richard Cunningham (47.62, rank 2), Luis Rojas (46.62, rank 3), Ladislav Kovács (45.62, rank 4), Hugh O'Reilly (45.62, rank 4, tied), Julia Barnett (43.62, rank 6)
+-- Result: Helena Holý (49.62, rank 1), Richard Cunningham (47.62, rank 2), Luis Rojas (46.62, rank 3),
+-- Ladislav Kovács (45.62, rank 4), Hugh O'Reilly (45.62, rank 4, tied), Julia Barnett (43.62, rank 6)
 ```
 ----
 
