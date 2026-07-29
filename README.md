@@ -314,7 +314,7 @@ ORDER BY SalesYear, SalesMonth;
 
 | Deliverable | Description | Location |
 |-------------|-------------|----------|
-| SQL Query File | All 9 queries written and executed in MySQL Workbench | queries/final/chinook_queries.sql |
+| SQL Query File | All 9 queries written and executed in MySQL Workbench | queries/final/queries/final/Chinook Music store.sql |
 | Summary Report | Written Word document summarizing findings and insights |reports/Chinook_Music_Store_SQL_Analysis_Report.docx|
 |   Raw Dataset | Chinook sample database (Customer, Invoice tables) | `data/raw/` | Chinook_MySql (3).sql
 | Query Screenshots | Selected screenshots of query results from MySQL Workbench | visuals/
