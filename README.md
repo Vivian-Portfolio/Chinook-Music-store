@@ -331,5 +331,5 @@ Data Analyst | Lagos, Nigeria
 - 📧 okwaravivian26@mail.com
 ---
 
-*Last updated: June  2026
+Last updated: June  2026
 
