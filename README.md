@@ -35,220 +35,121 @@
 
 ## 1. Project Overview
 
-<!--
-  Write 3–5 sentences in plain language.
-  Cover: context → problem → approach → outcome.
-  Read it out loud. If it sounds like a form - rewrite it.
+**Context:** Chinook is a sample digital music store database. The store needed a clear picture of where its customers are located, how much they spend, and how revenue trends over time.
 
-  WHAT GOOD LOOKS LIKE:
-  "A mid-size retail business was seeing inconsistent revenue across
-  its regional stores but couldn't identify the root cause. This project
-  explored 18 months of transaction data across five regions to determine
-  whether underperformance was driven by sales volume, pricing, or return
-  rates. The analysis revealed that one region's gap was almost entirely
-  explained by an unusually high return rate on a single product category -
-  a finding invisible in the company's top-level reporting."
+**Problem Statement:** The Customer and Invoice tables held raw transactional and customer data, but there was no structured analysis answering key customer and revenue questions — such as which country has the most customers, who the highest-spending customers are, and which customers have never purchased anything.
 
-  WHAT TO AVOID:
-  "This project analyzes sales data to find trends and insights."
-  (Too vague. Could describe 10,000 projects. Describes none of them.)
--->
+**Approach:** Used SQL in MySQL Workbench to query the Customer and Invoice tables, writing queries using INNER and LEFT JOINs, correlated subqueries, HAVING clauses, and the RANK() window function to answer nine business questions.
 
-**Context:** [The business, research, or personal situation that motivated this project.]
+**Outcome:** Successfully extracted customer and revenue insights, identifying the country with the largest customer base, USA-based customers, countries with multiple customers, top-spending customers, average invoice value, inactive customers, above-average spenders, ranked spenders, and month-by-month revenue trends.
+---
 
-**Problem Statement:** [The specific question or challenge you were addressing.]
-
-**Approach:** [In 1–2 sentences - how did you tackle it?]
-
-**Outcome:** [What did you produce or discover?]
+## 2. Key Questions Answered
+Which country has the largest customer base?
+Which customers are from the USA?
+Which countries have more than one customer?
+Which customers have spent the most money at the music store?
+What is the average amount customers spend per invoice?
+Which customers have never made a purchase?
+Which customers have spent more than the average customer spending?
+Who are the top-spending customers, ranked by total amount spent?
+How has store revenue changed over time?
 
 ---
 
-## 2. Objectives
-
-<!--
-  Write objectives that are specific enough to succeed or fail.
-  Use action-oriented verbs: Identify, Determine, Quantify, Build, Evaluate.
-
-  WHAT GOOD LOOKS LIKE:
-  ✅ "Determine whether customer churn rate correlates with support ticket volume."
-  ✅ "Identify the top three revenue-driving product categories across all regions."
-  ✅ "Build a reproducible pipeline that ingests and cleans daily sales exports."
-
-  WHAT TO AVOID:
-  ❌ "Explore the data."
-  ❌ "Gain insights."
-  ❌ "Understand trends."
-  (These can't fail - which means they can't succeed either.)
--->
-
-- **Primary Objective:** [The main thing you set out to do]
-- **Secondary Objective 1:** [Supporting goal]
-- **Secondary Objective 2:** [Supporting goal]
-- **Secondary Objective 3:** [Remove if not applicable]
-
-> 💡 *Every analysis decision in this project traces back to one of these objectives.*
+## 3. Objectives
+Primary Objective: 
+Secondary Objective 1: 
+Secondary Objective 2:
+Secondary Objective 3:
+- **Primary Objective:** Write and execute SQL queries in MySQL Workbench to analyze the Chinook Customer and Invoice tables and extract meaningful customer and revenue insights.
+- **Secondary Objective 1:** Identify customer geographic distribution, including country with the largest base and countries with multiple customers.
+- **Secondary Objective 2:**  Determine top-spending customers and customers with no purchase history using joins.
+- **Secondary Objective 3:**  Identify customers spending above the average using correlated subqueries.
+- **Secondary Objective 4:**  Demonstrate practical SQL skills including joins, subqueries, window functions, and date-based trend analysis.
 
 ---
 
-## 3. Project Scope & Tools
+## 4. Project Scope & Tools
 
 ### Scope
 
-<!--
-  WHAT GOOD LOOKS LIKE:
-  In Scope: "Transaction-level data for Regions A–E, Jan 2023–Jun 2024.
-             Analysis covers revenue, return rates, and product category performance."
-  Out of Scope: "Customer demographics and marketing spend data were excluded -
-                 demographic data was incomplete for two regions, and marketing
-                 data sits in a separate system outside this engagement."
-
-  WHAT TO AVOID:
-  ❌ Leaving Out of Scope blank. This is the section that protects your credibility.
-     If you don't define the fence, reviewers assume you missed things.
--->
-
 | Dimension | Details |
 |-----------|---------|
-| **In Scope** | [What is included - data sources, time periods, segments] |
-| **Out of Scope** | [What you explicitly excluded - and a brief reason why] |
-| **Time Period** | [Date range of the data or the project itself] |
-| **Granularity** | [Unit of analysis - row-level, daily aggregates, per-user, etc.] |
+| **In Scope** | Customer records (name, country) and Invoice records (total, invoice date) from the Chinook sample database |
+| **Out of Scope** | Track-level, artist-level, and playlist-level data — analysis is limited to the Customer and Invoice tables|
+| **Time Period** | Full invoice date range present in the Chinook database|
+| **Granularity** | Row-level customer and invoice data|
 
 ### Tools & Technologies
 
-<!--
-  List only what you actually used on this project.
-  This is not your skills section - it's the project's technical context.
--->
-
 | Category | Tool(s) Used |
 |----------|-------------|
-| Data Storage | [e.g., PostgreSQL, CSV files, BigQuery, S3] |
-| Data Processing | [e.g., Python, R, SQL, Excel, dbt] |
-| Analysis | [e.g., pandas, dplyr, custom SQL queries] |
-| Visualization | [e.g., Matplotlib, Tableau, Power BI, Looker] |
-| Version Control | [e.g., Git / GitHub] |
-| Documentation | [e.g., Markdown, Notion] |
-| Other | [Any additional tools] |
+| Category| MySQL |
+| Database Management | MySQL Workbench |
+| Data Querying| SQL (SELECT, WHERE, GROUP BY, HAVING, ORDER BY |
+| Joins | INNER JOIN, LEFT JOIN |
+| Subqueries | Correlated / nested subqueries |
+| Aggregate Functions| COUNT, SUM, AVG, ROUND|
+| Date Functions| YEAR, MONTH |
+| String Functions | CONCAT | 
+| Documentation | Microsoft Word, GitHub
 
 ---
 
-## 4. Repository Structure
+## 5. Repository Structure
 
 ```
-[project-root]/
+Chinook-Music-Store-SQL-Analysis/
 │
 ├── data/
-│   ├── raw/                  # Original, unmodified source data - never edited
-│   ├── processed/            # Cleaned and transformed data
-│   └── external/             # Reference data, lookup tables, third-party files
+│   └── raw/                 # Chinook sample database (Customer, Invoice tables)
 │
-├── notebooks/                # Jupyter, R Markdown, or Colab notebooks
+├── docs/                     # Data dictionary and project notes
 │
-├── scripts/                  # Reusable .py, .R, or .sh processing files
+├── queries/
+│   ├── exploratory/          # Initial investigative queries
+│   └── final/                # Final production-ready queries
 │
-├── queries/                  # SQL files (retain this folder for SQL-heavy projects)
-│   ├── exploratory/          # Ad-hoc or investigative queries
-│   ├── transformations/      # Cleaning and reshaping logic
-│   └── final/                # Production-ready or presentation queries
+├── reports/                  # Written summary report
 │
-├── reports/                  # Final outputs: PDFs, slide decks, Word docs
+├── visuals/                  # Screenshots of query results
 │
-├── visuals/                  # Exported charts, dashboard screenshots, ERD diagrams
-│
-├── docs/                     # Data dictionaries, schema notes, reference material
-│
-├── project_metadata.yml      # Machine-readable metadata (optional)
-└── README.md                 # You are here
+├── README.md                 # You are here
+└── project_metadata.yml      # Project metadata
 ```
-
-> ⚠️ *Delete folders you didn't use. An empty folder is worse than no folder.*
-> SQL-heavy projects: keep `queries/`. Analysis-only projects: keep `notebooks/`. Both? Keep both.
 
 ---
 
-## 5. Data Workflow
+## 6. Data Workflow
 
-<!--
-  Show how data moved through your project - from source to output.
-  Every transformation decision should be traceable here.
-
-  WHAT GOOD LOOKS LIKE:
-  1. Source: "Monthly CSV exports pulled from the internal POS system.
-              Five files, one per region, covering Jan 2023–Jun 2024."
-  2. Ingestion: "Loaded into Python using pandas. Files concatenated into
-                 a single dataframe (approx. 340,000 rows)."
-  3. Cleaning: "Removed 1.2% of rows with null transaction IDs.
-                Standardised date formats across regional files.
-                Resolved product category naming inconsistencies (3 variants → 1)."
-  4. Transformation: "Created a returns_rate field at product-category level.
-                      Aggregated to weekly and regional grain for trend analysis."
-  5. Analysis: "Descriptive statistics, regional comparison, return rate
-                segmentation by product category."
-  6. Output: "Summary report (PDF), annotated notebook, processed CSV."
-
-  WHAT TO AVOID:
-  ❌ "Data was cleaned and analysed." (No chain. No decisions. No trust.)
--->
-
-```
-[Data Source(s)]
-      ↓
-[Ingestion / Collection Method]
-      ↓
-[Cleaning & Transformation]
-      ↓
-[Analysis / Modelling / Querying]
-      ↓
-[Output / Visualisation / Reporting]
-```
-
-1. **Source:** [Where did the data come from? Format, size, access method.]
-2. **Ingestion:** [How was it brought in?]
-3. **Cleaning:** [What issues did you find and fix?]
-4. **Transformation:** [What new fields, aggregations, or structures did you create?]
-5. **Analysis:** [What methods - statistical, visual, query-based, model-based?]
-6. **Output:** [What form do the results take?]
-
+1. **Source:** Two related tables from the pre-built Chinook sample database — Customer (customer records) and Invoice (transaction records).
+2. **Ingestion:** Chinook database connected in MySQL Workbench; Customer and Invoice tables queried directly.
+3. **Analysis:** Wrote and executed 9 SQL queries covering aggregation, joins (INNER and LEFT), correlated subqueries, HAVING clauses, and RANK() window functions to answer key customer and revenue questions.
+4.  **Output:**  Query results documented in README, SQL script saved as a .sql file, selected screenshots of query outputs saved in the visuals/ folder, and a written summary report saved in the reports/ folder.
+   
 ---
 
-## 6. Data Model & Schema
+## . Data Model & Schema
+The dataset uses two core tables from the Chinook sample database.
+Data Dictionary
 
-<!--
-  Define your fields so that someone reading your analysis can follow along
-  without digging through your code.
-
-  WHAT GOOD LOOKS LIKE (one row example):
-  | transaction_id | string | Unique identifier per sales transaction | TXN-00482 |
-  | return_flag    | boolean | Whether the transaction included a return | TRUE |
-  | region_code    | string | Two-letter identifier for store region | "NE" |
-
-  WHAT TO AVOID:
-  ❌ Skipping this section because "the field names are self-explanatory."
-     They're not. Not to a reviewer. Not to you in six months.
-
-  📌 FOR SQL PROJECTS: If you have multiple tables, create one block per table.
-     Describe join keys and relationships here. Your ERD (Section 7) will
-     visualise what this section describes in text.
-
-  📌 FOR NON-SQL PROJECTS: Describe the shape of your dataset informally
-     if a formal schema doesn't apply. Even one paragraph is more helpful than nothing.
--->
-
-### Dataset / Table: `[name]`
+### Dataset Dictionary 
 
 | Field Name | Data Type | Description | Example Value |
 |------------|-----------|-------------|---------------|
-| `[field_1]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-| `[field_2]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-| `[field_3]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
+| `CustomerId` | Integer | Unique identifier for each customer | 1 |
+| `[FirstName` | Text | Customer's first name | Luís |
+| `LastName` |Text| Customer's last name| Gonçalves |
+| `Country` | Text | Customer's country | Brazil |
+| `InvoiceId` | Integer | Unique identifier for each invoice | 1 |
+| `CustomerId (Invoice)` | Integer | Foreign key linking invoice to customer | 1 |
+| `InvoiceDate]` | Date| Date the invoice was issued| 2009-01-01 |
+| `Total` | Float| Total amount of the invoice | 1.98|
 
-> **Row count (approx.):** [X rows]
-> **Date range:** [Start] – [End]
-> **Key join / relationship:** [e.g., `orders.customer_id` → `customers.id`]
+> **Key tables:** Customer, Invoice
+> **Relationship:** Customer.CustomerId → Invoice.CustomerId
 
-*Add additional table blocks as needed for multi-table projects.*
 
 ---
 
