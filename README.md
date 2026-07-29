@@ -293,7 +293,7 @@ ORDER BY SalesYear, SalesMonth;
 
 **Insight 5: The average invoice value is 5.65** relatively low per transaction, suggesting customers make frequent smaller purchases rather than large one-off ones.
 
-**Insight 6: Monthly revenue in 2021 was remarkably stable at 37.62 from February onward, after a slightly lower January (35.64)5 **indicating consistent, predictable demand rather than strong seasonality.
+**Insight 6: Monthly revenue in 2021 was remarkably stable at 37.62 from February onward, after a slightly lower January (35.64)5** indicating consistent, predictable demand rather than strong seasonality.
 
 
 ---
