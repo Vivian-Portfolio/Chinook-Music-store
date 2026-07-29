@@ -19,13 +19,13 @@
 
 ## Table of Contents
 1. [Project Overview](#1-project-overview)
-2. [Key Questions Answered](#2-Key Questions Answered)
+2. [Key Questions Answered](#2-Key-Questions-Answered)
 3. [Objectives](#2-objectives)
 4. [Project Scope & Tools](#4-project-scope--tools)
 5. [Repository Structure](#5-repository-structure)
 6. [Data Workflow](#6-data-workflow)
 7. [Data Model & Schema](#7-data-model--schema)
-8. [SQL Analysis & Queries](#8-SQL Analysis & Queries)
+8. [SQL Analysis & Queries](#8-SQL-Analysis-&-Queries)
 9. [Key Insights](#9-key-insights)
 10. [Recommendations](#10-recommendations)
 11. [Deliverables](#11-deliverables)
@@ -35,13 +35,14 @@
 
 ## 1. Project Overview
 
-**Context:** Chinook is a sample digital music store database. The store needed a clear picture of where its customers are located, how much they spend, and how revenue trends over time.
+**Context:**  Chinook is a sample digital music store database. The store needed a clear picture of where its customers are located, how much they spend, and how revenue trends over time.
 
-**Problem Statement:** The Customer and Invoice tables held raw transactional and customer data, but there was no structured analysis answering key customer and revenue questions — such as which country has the most customers, who the highest-spending customers are, and which customers have never purchased anything.
+**Problem Statement:** TThe Customer and Invoice tables held raw transactional and customer data, but there was no structured analysis answering key customer and revenue questions.
 
-**Approach:** Used SQL in MySQL Workbench to query the Customer and Invoice tables, writing queries using INNER and LEFT JOINs, correlated subqueries, HAVING clauses, and the RANK() window function to answer nine business questions.
+**Approach:** Used SQL in MySQL Workbench to query the Customer and Invoice tables with INNER and LEFT JOINs, correlated subqueries, HAVING clauses, and the RANK() window function to answer nine business questions.
 
-**Outcome:** Successfully extracted customer and revenue insights, identifying the country with the largest customer base, USA-based customers, countries with multiple customers, top-spending customers, average invoice value, inactive customers, above-average spenders, ranked spenders, and month-by-month revenue trends.
+**Outcome:**  Successfully extracted meaningful insights, revealing that the USA has the largest customer base (13 customers), the average invoice value is 5.65, no customers are inactive, 22 customers spend above the average, Helena Holý is the top-spending customer at 49.62, and monthly revenue in 2021 held steady around 37.62 after a lower opening month.
+
 ---
 
 ## 2. Key Questions Answered
@@ -76,7 +77,7 @@ How has store revenue changed over time?
 |-----------|---------|
 | **In Scope** | Customer records (name, country) and Invoice records (total, invoice date) from the Chinook sample database |
 | **Out of Scope** | Track-level, artist-level, and playlist-level data - analysis is limited to the Customer and Invoice tables|
-| **Time Period** | Full invoice date range present in the Chinook database|
+| **Time Period** | Invoice records beginning 2021 |
 | **Granularity** | Row-level customer and invoice data|
 
 ### Tools & Technologies
@@ -135,14 +136,14 @@ The dataset uses two core tables from the Chinook sample database.
 
 | Field Name | Data Type | Description | Example Value |
 |------------|-----------|-------------|---------------|
-| `CustomerId` | Integer | Unique identifier for each customer | 1 |
-| `[FirstName` | Text | Customer's first name | Luís |
-| `LastName` |Text| Customer's last name| Gonçalves |
-| `Country` | Text | Customer's country | Brazil |
+| `CustomerId` | Integer | Unique identifier for each customer | 6 |
+| `[FirstName` | Text | Customer's first name | Helena |
+| `LastName` | Text| Customer's last name | Holy |
+| `Country` | Text | Customer's country | Czech Republic |
 | `InvoiceId` | Integer | Unique identifier for each invoice | 1 |
-| `CustomerId (Invoice)` | Integer | Foreign key linking invoice to customer | 1 |
-| `InvoiceDate]` | Date| Date the invoice was issued| 2009-01-01 |
-| `Total` | Float| Total amount of the invoice | 1.98|
+| `CustomerId (Invoice)` | Integer | Foreign key linking invoice to customer | 6 |
+| `InvoiceDate]` | Date | Date the invoice was issued| 2009-01-01 |
+| `Total` | Float | Total amount of the invoice | 5.65 |
 
 **Key tables:** Customer, Invoice
 **Relationship:** Customer.CustomerId → Invoice.CustomerId
@@ -161,7 +162,7 @@ FROM Customer
 GROUP BY Country
 ORDER BY TotalCustomers DESC
 LIMIT 1;
--- Result: [insert top country once available]
+-- Result:  USA has the largest customer base with 13 customers 
 ```
 
 Q2: Which customers are from the USA?
@@ -174,8 +175,9 @@ SELECT
 FROM Customer
 WHERE Country = 'USA'
 ORDER BY LastName ASC;
--- Result: [insert list/count of USA customers once available]
+-- Result: 13 Customers from the USA, ordered alphabetically by name (e.g., Dan, Frank, Jack...)
 ```
+----
 
 Q3: Which countries have more than one customer?
 ``` sql
@@ -186,8 +188,7 @@ FROM Customer
 GROUP BY Country
 HAVING COUNT(CustomerId) > 1
 ORDER BY TotalCustomers DESC;
--- Result: [insert countries with multiple customers once available]
-```
+-- Result: USA (13), Canada (8), Brazil (5), France (5), Germany (4), United Kingdom (3)
 
 Q4: Which customers have spent the most money at the music store?
 ``` sql
@@ -200,15 +201,18 @@ INNER JOIN Invoice i ON c.CustomerId = i.CustomerId
 GROUP BY c.CustomerId, CustomerName
 ORDER BY TotalSpent DESC
 LIMIT 5;
--- Result: [insert top 5 spending customers once available]
+-- Result: Helena Holy (49.62), Richard Cunningham (47.62), Lusi Rojas (46.62), Ladislav Kovacs (45.62), Hug O'Reilly (45.62)
 ```
+---
+
 Q5: What is the average amount customers spend per invoice?
 ``` sql
 SELECT
     ROUND(AVG(Total),2) AS AverageInvoiceValue
 FROM Invoice;
--- Result: [insert average invoice value once available]
+-- Result: 5.65
 ```
+---
 
 Q6: Which customers have never made a purchase?
 ``` sql
@@ -219,8 +223,9 @@ SELECT
 FROM Customer c
 LEFT JOIN Invoice i ON c.CustomerId = i.CustomerId
 WHERE i.InvoiceId IS NULL;
--- Result: [insert list of inactive customers once available]
+-- Result: 0 row returned - every customer in the dataset has made at least one purchase
 ```
+---
 
 Q7: Which customers have spent more than the average customer spending?
 ``` sql
@@ -240,8 +245,9 @@ HAVING SUM(i.Total) > (
     ) AS AvgSpending
 )
 ORDER BY TotalSpent DESC;
--- Result: [insert count/list of above-average spenders once available]
+-- Result: 22 customer spend above the average customer spending level
 ```
+---
 
 Q8: Who are the top-spending customers, ranked by total amount spent?
 ``` sql
@@ -257,8 +263,9 @@ FROM (
     INNER JOIN Invoice i ON c.CustomerId = i.CustomerId
     GROUP BY c.CustomerId, CustomerName
 ) AS CustomerSpending;
--- Result: [insert ranked customer list once available]
+-- Result: Result: Helena Holý (49.62, rank 1), Richard Cunningham (47.62, rank 2), Luis Rojas (46.62, rank 3), Ladislav Kovács (45.62, rank 4), Hugh O'Reilly (45.62, rank 4, tied), Julia Barnett (43.62, rank 6)
 ```
+----
 
 Q9: How has store revenue changed over time?
 ``` sql
@@ -269,39 +276,40 @@ SELECT
 FROM Invoice
 GROUP BY YEAR(InvoiceDate), MONTH(InvoiceDate)
 ORDER BY SalesYear, SalesMonth;
--- Result: [insert monthly/yearly revenue trend once available]
+-- Result: 2021 revenue opened at 35.64 in January, then held steady at 37.62 per month from February onward
 ```
 ---
 
-## 8. Key Insights
+## 9. Key Insights
 
-**Insight 1: [Short descriptive headline]**
-[What you found + what it suggests. One short paragraph.]
+**Insight 1:The USA has the largest customer base at 13 customers** nearly double Canada's 8, making it the store's most important market by customer volume.
 
-**Insight 2: [Short descriptive headline]**
-[What you found + what it suggests.]
+**Insight 2: Every customer in the dataset has made at least one purchase** there are zero inactive customers, suggesting strong initial conversion or a curated customer list
 
-**Insight 3: [Short descriptive headline]**
-[What you found + what it suggests.]
+**Insight3: 22 customers spend above the average customer spending level**  indicating a solid core of engaged, above-average-value customers rather than spending being concentrated in just a handful.
 
-**Insight 4 (if applicable): [Short descriptive headline]**
-[What you found + what it suggests.]**
+**Insight 4: Helena Holý is the top-spending customer at 49.62, closely followed by Richard Cunningham (47.62) and Luis Rojas (46.62)** the top 5 spenders are tightly clustered between ~45–50, rather than one customer dominating.
+
+**Insight 5: The average invoice value is 5.65** relatively low per transaction, suggesting customers make frequent smaller purchases rather than large one-off ones.
+
+**Insight 6: Monthly revenue in 2021 was remarkably stable at 37.62 from February onward, after a slightly lower January (35.64)5 **indicating consistent, predictable demand rather than strong seasonality.
 
 
 ---
 
-## 9. Recommendations
+## 10. Recommendations
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
-| High | [Specific, actionable step] | [Insight it comes from] | [Who should act] |
-| Medium | [Specific, actionable step] | [Insight it comes from] | [Who should act] |
-| Low | [Exploratory or longer-term suggestion] | [Insight it comes from] | [Who should act] |
+| High | Launch a loyalty or rewards program targeting the top 5–10 spending customers to protect and grow high-value relationships |Insight 4 — top spenders clustered closely between 45–50 in total spend | Marketing / Retention team |
+| Medium |Investigate why January revenue (35.64) trails other months and test early-year promotions to close the gap | Insight 6 — steady 37.62 monthly revenue except a lower January | Marketing team |
+| Medium | Prioritize marketing spend toward the USA and Canada given their outsized share of the customer base |Insight 1 — USA (13) and Canada (8) lead all countries in customer count | Regional Marketing team |
+| Low | Explore bundling or upsell offers to lift the average invoice value of 5.65 |Insight 5 — low average invoice value suggests frequent small purchases |Sales / Product team |
 
 
 ---
 
-## 10. Deliverables
+## 11. Deliverables
 
 | Deliverable | Description | Location |
 |-------------|-------------|----------|
@@ -312,7 +320,7 @@ ORDER BY SalesYear, SalesMonth;
 
 ---
 
-## 11. Author
+## 12. Author
 
 **Okwara Vivian**
 Data Analyst | Lagos, Nigeria
