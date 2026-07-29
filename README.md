@@ -122,7 +122,7 @@ Chinook-Music-Store-SQL-Analysis/
 
 ## 6. Data Workflow
 
-1. **Source:** Two related tables from the pre-built Chinook sample database — Customer (customer records) and Invoice (transaction records).
+1. **Source:** Two related tables from the pre-built Chinook sample database - Customer (customer records) and Invoice (transaction records).
 2. **Ingestion:** Chinook database connected in MySQL Workbench; Customer and Invoice tables queried directly.
 3. **Analysis:** Wrote and executed 9 SQL queries covering aggregation, joins (INNER and LEFT), correlated subqueries, HAVING clauses, and RANK() window functions to answer key customer and revenue questions.
 4.  **Output:**  Query results documented in README, SQL script saved as a .sql file, selected screenshots of query outputs saved in the visuals/ folder, and a written summary report saved in the reports/ folder.
