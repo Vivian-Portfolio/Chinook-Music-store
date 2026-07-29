@@ -47,15 +47,15 @@
 
 ## 2. Key Questions Answered
 
-Which country has the largest customer base?
-Which customers are from the USA?
-Which countries have more than one customer?
-Which customers have spent the most money at the music store?
-What is the average amount customers spend per invoice?
-Which customers have never made a purchase?
-Which customers have spent more than the average customer spending?
-Who are the top-spending customers, ranked by total amount spent?
-How has store revenue changed over time?
+- Which country has the largest customer base?
+- Which customers are from the USA?
+- Which countries have more than one customer?
+- Which customers have spent the most money at the music store?
+- What is the average amount customers spend per invoice?
+- Which customers have never made a purchase?
+- Which customers have spent more than the average customer spending?
+- Who are the top-spending customers, ranked by total amount spent?
+- How has store revenue changed over time?
 
 ---
 
