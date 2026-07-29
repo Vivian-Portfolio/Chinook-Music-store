@@ -289,7 +289,7 @@ ORDER BY SalesYear, SalesMonth;
 
 **Insight3: 22 customers spend above the average customer spending level**  indicating a solid core of engaged, above-average-value customers rather than spending being concentrated in just a handful.
 
-**Insight 4: Helena Holý is the top-spending customer at 49.62, closely followed by Richard Cunningham (47.62) and Luis Rojas (46.62)** the top 5 spenders are tightly clustered between ~45–50, rather than one customer dominating.
+**Insight 4: Helena Holý is the top-spending customer at 49.62, closely followed by Richard Cunningham (47.62) and Luis Rojas (46.62)** the top 5 spenders are tightly clustered between ~45-50, rather than one customer dominating.
 
 **Insight 5: The average invoice value is 5.65** relatively low per transaction, suggesting customers make frequent smaller purchases rather than large one-off ones.
 
@@ -302,10 +302,10 @@ ORDER BY SalesYear, SalesMonth;
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
-| High | Launch a loyalty or rewards program targeting the top 5–10 spending customers to protect and grow high-value relationships |Insight 4 — top spenders clustered closely between 45–50 in total spend | Marketing / Retention team |
-| Medium |Investigate why January revenue (35.64) trails other months and test early-year promotions to close the gap | Insight 6 — steady 37.62 monthly revenue except a lower January | Marketing team |
-| Medium | Prioritize marketing spend toward the USA and Canada given their outsized share of the customer base |Insight 1 — USA (13) and Canada (8) lead all countries in customer count | Regional Marketing team |
-| Low | Explore bundling or upsell offers to lift the average invoice value of 5.65 |Insight 5 — low average invoice value suggests frequent small purchases |Sales / Product team |
+| High | Launch a loyalty or rewards program targeting the top 5-10 spending customers to protect and grow high-value relationships |Insight 4 - top spenders clustered closely between 45-50 in total spend | Marketing / Retention team |
+| Medium |Investigate why January revenue (35.64) trails other months and test early-year promotions to close the gap | Insight 6 - steady 37.62 monthly revenue except a lower January | Marketing team |
+| Medium | Prioritize marketing spend toward the USA and Canada given their outsized share of the customer base |Insight 1 - USA (13) and Canada (8) lead all countries in customer count | Regional Marketing team |
+| Low | Explore bundling or upsell offers to lift the average invoice value of 5.65 |Insight 5 - low average invoice value suggests frequent small purchases |Sales / Product team |
 
 
 ---
