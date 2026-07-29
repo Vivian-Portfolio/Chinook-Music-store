@@ -263,9 +263,8 @@ FROM (
     INNER JOIN Invoice i ON c.CustomerId = i.CustomerId
     GROUP BY c.CustomerId, CustomerName
 ) AS CustomerSpending;
--- Result: Result: Helena Holý (49.62, rank 1), Richard Cunningham (47.62, rank 2), Luis Rojas (46.62, rank 3), Ladislav Kovács (45.62, rank 4), Hugh O'Reilly (45.62, rank 4, tied), Julia Barnett (43.62, rank 6)
+-- Result: Helena Holý (49.62, rank 1), Richard Cunningham (47.62, rank 2), Luis Rojas (46.62, rank 3), Ladislav Kovács (45.62, rank 4), Hugh O'Reilly (45.62, rank 4, tied), Julia Barnett (43.62, rank 6)
 ```
-
 ----
 
 Q9: How has store revenue changed over time?
