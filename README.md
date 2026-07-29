@@ -267,6 +267,7 @@ FROM (
 ```
 ----
 
+
 Q9: How has store revenue changed over time?
 ``` sql
 SELECT
